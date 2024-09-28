@@ -54,32 +54,32 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = './login.html'; // Redirect to login page if needed
     });
 
-    /** Handles the log out button click */
-    logoutBtn.addEventListener("click", function () {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("farmerId");
-        localStorage.removeItem("userRole");
-        showLoggedOutState();
+ /** Handles the log out button click */
+ logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("farmerId");
+    localStorage.removeItem("userRole");
+    showLoggedOutState();
 
-        // Redirect to the index page
-        window.location.href = './index.html';
-    });
+    // Redirect to the index page
+    window.location.href = './index.html';
+});
 
-    /** Handles the profile click */
-    profileBtn.addEventListener('click', () => {
-        // Check if the user is logged in
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
+/** Handles the profile click */
+profileBtn.addEventListener('click', () => {
+    // Check if the user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
 
-        if (isLoggedIn) {
-            // If the user is logged in, redirect to the profile page
-            window.location.href = './profile.html';
-        } else {
-            // If the user is not logged in, set a flag to redirect to the profile page after login
-            localStorage.setItem('redirectFromProfile', true);
-            // Redirect to the login page
-            window.location.href = './login.html';
-        }
-    });
+    if (isLoggedIn) {
+        // If the user is logged in, redirect to the profile page
+        window.location.href = './profile.html';
+    } else {
+        // If the user is not logged in, set a flag to redirect to the profile page after login
+        localStorage.setItem('redirectFromProfile', true);
+        // Redirect to the login page
+        window.location.href = './login.html';
+    }
+});
 
     // Add event listener to the logo
     document.querySelector('.navbar-brand').addEventListener('click', function () {
