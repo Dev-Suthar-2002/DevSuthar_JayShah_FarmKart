@@ -48,7 +48,7 @@
             style="border: none;"></i>
           <ul class="dropdown-menu justify-content-center align-items-center custom-dropdown">
             <li><a class="dropdown-item" id="profile-btn" href="#">Your Profile</a></li>
-            <li><a class="dropdown-item" id="orders" href="#">Order History</a></li>
+            <li><a class="dropdown-item" id="orders" href="./customerorders.html">Order History</a></li>
             <li><a class="dropdown-item" id="logout-btn" href="#">Log out</a></li>
           </ul>
 
@@ -87,7 +87,7 @@
           <p class="card-text text-center" style="margin:2rem"> <i class="fas fa-quote-left mx-2"></i>A seamless
             connection between farmers and businesses, ensuring fresh products reach the market efficiently.
             Farmers are the backbone of our food system, and supporting them is essential for a thriving and sustainable
-            future. [Platform Name] is a dedicated platform designed to empower farmers by providing them with the
+            future. FarmKart is a dedicated platform designed to empower farmers by providing them with the
             tools, resources, and market connections they need to succeed. Our mission is to bridge the gap between
             farmers and buyers, ensuring that fresh, high-quality products reach consumers efficiently. Whether it’s
             accessing expert advice, exploring new market opportunities, or simply simplifying the process of selling
@@ -107,77 +107,76 @@
     </div>
   </div>
 
-  <!-- productlisting -->
-  <div class="container">
-    <h2 class="text-center mb-3">Products of the week.</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <img src="./images/pexels-zen-chung-5529605.jpg" class="card-img-top" alt="..." style="height: 25rem;">
-          <div class="card-body">
-            <h5 class="card-title">Product: Fresh Organic Apples</h5>
-            <h6> Price: $4.99 per pound </h6>
-            <p class="card-text">Description:
-              Our fresh organic apples are hand-picked from sustainable orchards, ensuring the highest quality and
-              flavor. Perfect for snacking, baking, or adding a healthy crunch to any meal. These apples are grown
-              without the use of synthetic pesticides, making them a wholesome choice for your family. Packed with
-              essential nutrients and antioxidants, our organic apples are a delicious way to support both your health
-              and the environment.</p>
-          </div>
-          <div class="card-footer d-flex" style="justify-content: space-between;">
-            <button type="button" class="btn btn-outline-success">Buy Now <i class="fas fa-dollar-sign"></i></button>
-            <div class="input-group quantity-selector" style="width: 3rem">
-              <input type="number" class="form-control text-center" value="1" min="1" max="10" id="quantity-input">
+    <!-- productlisting -->
+    <div class="container">
+      <h2 class="text-center mb-3">Products of the week.</h2>
+      <div class="row row-cols-4 row-cols-md-4 g-3">
+          <div class="col">
+              <div class="card my-4" style="width: 20rem;">
+                  <img src="./images/pexels-shvetsa-5187579.jpg" class="card-img-top" alt="Product 1" style="height: 200px; object-fit: cover;">
+                  <div class="card-body">
+                    <h5 class="card-title">Fresh Organic Corn</h5>
+                    <p>Vendor: <u>Farmer John Doe</u></p>
+                    <p>Effective Price : <s>$5.00</s > <strong class="card-price">$3.50</strong> <i class="fas fa-tags"></i></p>
+                    <p class="card-text">Harvested fresh every morning, this corn is a fantastic addition to any meal, bringing both quality and freshness that your family will love. Grab it now at a special discounted price while supplies last!</p>
+                    
+                    <div class="container d-flex justify-content-center w-100">
+                       <button type="button" class="btn btn-outline-success" style="margin-right: 2rem;">Buy Now <i class="fas fa-dollar-sign"></i></button>
+                       <button type="button" class="btn btn-outline-success">Add to Cart <i class="fas fa-plus"></i></button>
+                   </div>
+                  </div>
+              </div>
             </div>
-            <button type="button" class="btn btn-outline-success">Add to Cart <i class="fas fa-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./images/pexels-zen-chung-5529605.jpg" class="card-img-top" alt="..." style="height: 25rem;">
-          <div class="card-body">
-            <h5 class="card-title">Product: Fresh Organic Apples</h5>
-            <h6> Price: $4.99 per pound </h6>
-            <p class="card-text">Description:
-              Our fresh organic apples are hand-picked from sustainable orchards, ensuring the highest quality and
-              flavor. Perfect for snacking, baking, or adding a healthy crunch to any meal. These apples are grown
-              without the use of synthetic pesticides, making them a wholesome choice for your family. Packed with
-              essential nutrients and antioxidants, our organic apples are a delicious way to support both your health
-              and the environment.</p>
-          </div>
-          <div class="card-footer d-flex" style="justify-content: space-between;">
-            <button type="button" class="btn btn-outline-success">Buy Now <i class="fas fa-dollar-sign"></i></button>
-            <div class="input-group quantity-selector" style="width: 3rem">
-              <input type="number" class="form-control text-center" value="1" min="1" max="10" id="quantity-input">
+            <div class="col">
+              <div class="card my-4" style="width: 20rem;">
+                  <img src="./images/pexels-shvetsa-5187579.jpg" class="card-img-top" alt="Product 1" style="height: 200px; object-fit: cover;">
+                  <div class="card-body">
+                    <h5 class="card-title">Fresh Organic Corn</h5>
+                    <p>Vendor: <u>Farmer John Doe</u></p>
+                    <p>Effective Price : <s>$5.00</s > <strong class="card-price">$3.50</strong> <i class="fas fa-tags"></i></p>
+                    <p class="card-text">Harvested fresh every morning, this corn is a fantastic addition to any meal, bringing both quality and freshness that your family will love. Grab it now at a special discounted price while supplies last!</p>
+                    
+                    <div class="container d-flex justify-content-center w-100">
+                       <button type="button" class="btn btn-outline-success" style="margin-right: 2rem;">Buy Now <i class="fas fa-dollar-sign"></i></button>
+                       <button type="button" class="btn btn-outline-success">Add to Cart <i class="fas fa-plus"></i></button>
+                   </div>
+                  </div>
+              </div>
             </div>
-            <button type="button" class="btn btn-outline-success">Add to Cart <i class="fas fa-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./images/pexels-zen-chung-5529605.jpg" class="card-img-top" alt="..." style="height: 25rem;">
-          <div class="card-body">
-            <h5 class="card-title">Product: Fresh Organic Apples</h5>
-            <h6> Price: $4.99 per pound </h6>
-            <p class="card-text">Description:
-              Our fresh organic apples are hand-picked from sustainable orchards, ensuring the highest quality and
-              flavor. Perfect for snacking, baking, or adding a healthy crunch to any meal. These apples are grown
-              without the use of synthetic pesticides, making them a wholesome choice for your family. Packed with
-              essential nutrients and antioxidants, our organic apples are a delicious way to support both your health
-              and the environment.</p>
-          </div>
-          <div class="card-footer d-flex" style="justify-content: space-between;">
-            <button type="button" class="btn btn-outline-success">Buy Now <i class="fas fa-dollar-sign"></i></button>
-            <div class="input-group quantity-selector" style="width: 3rem">
-              <input type="number" class="form-control text-center" value="1" min="1" max="10" id="quantity-input">
+            <div class="col">
+              <div class="card my-4" style="width: 20rem;">
+                  <img src="./images/pexels-shvetsa-5187579.jpg" class="card-img-top" alt="Product 1" style="height: 200px; object-fit: cover;">
+                  <div class="card-body">
+                    <h5 class="card-title">Fresh Organic Corn</h5>
+                    <p>Vendor: <u>Farmer John Doe</u></p>
+                    <p>Effective Price : <s>$5.00</s > <strong class="card-price">$3.50</strong> <i class="fas fa-tags"></i></p>
+                    <p class="card-text">Harvested fresh every morning, this corn is a fantastic addition to any meal, bringing both quality and freshness that your family will love. Grab it now at a special discounted price while supplies last!</p>
+                    
+                    <div class="container d-flex justify-content-center w-100">
+                       <button type="button" class="btn btn-outline-success" style="margin-right: 2rem;">Buy Now <i class="fas fa-dollar-sign"></i></button>
+                       <button type="button" class="btn btn-outline-success">Add to Cart <i class="fas fa-plus"></i></button>
+                   </div>
+                  </div>
+              </div>
             </div>
-            <button type="button" class="btn btn-outline-success">Add to Cart <i class="fas fa-plus"></i></button>
-          </div>
+            <div class="col">
+              <div class="card my-4" style="width: 20rem;">
+                  <img src="./images/pexels-shvetsa-5187579.jpg" class="card-img-top" alt="Product 1" style="height: 200px; object-fit: cover;">
+                  <div class="card-body">
+                    <h5 class="card-title">Fresh Organic Corn</h5>
+                    <p>Vendor: <u>Farmer John Doe</u></p>
+                    <p>Effective Price : <s>$5.00</s > <strong class="card-price">$3.50</strong> <i class="fas fa-tags"></i></p>
+                    <p class="card-text">Harvested fresh every morning, this corn is a fantastic addition to any meal, bringing both quality and freshness that your family will love. Grab it now at a special discounted price while supplies last!</p>
+                    
+                    <div class="container d-flex justify-content-center w-100">
+                       <button type="button" class="btn btn-outline-success" style="margin-right: 2rem;">Buy Now <i class="fas fa-dollar-sign"></i></button>
+                       <button type="button" class="btn btn-outline-success">Add to Cart <i class="fas fa-plus"></i></button>
+                   </div>
+                  </div>
+              </div>
+            </div>
+            
         </div>
-      </div>
-    </div>
   </div>
 
   <!-- footer -->
