@@ -1,21 +1,78 @@
-# FarmKart Web Application
-An online marketplace for farmers to list their items online. Customer can explore those items and purchase them using visa card or pay on delivery option. Customer can add the itmes to the cart and can see their orders and its status. Also, same goes for the farmers, they can see the orders which were placed by customers.
+# FarmKart API - Authentication and Authorization
+- This document outlines the implementation of Authentication and Authorization in the FarmKart API using NestJS and TypeScript.
 
-# Featurees
-- Farmers can list their items.
-- Farmers can view the orders which were placed by customer.
-- Customer can place the order.
-- Customer can also view their orders.
+# Features
+- Authentication: Implemented using JWT (JSON Web Token) for secure access to API endpoints.
+- Authorization: Role-based access control to manage permissions for different user roles ( Farmer, Customer).
 
-# Tech Stack
-- HTML, CSS, JAVA-SCRIPT(JS)
-- BACKEND : 
-- DATABASE :
+# Prerequisites
+- Node.js and npm installed.
+- A MongoDB database.
+- Required environment variables configured (see .env).
 
-# INSTALLATION
-- Clone the repository.
-- Navigate to the folder.
-- Open "index.html" in your browser to view the site.
+# Installation
+- Clone the repository:
 
-# ACKNOWLEDGEMENTS
-- Boostrap doccumentation for styling guidence.
+# bash
+- Copy code
+- git clone <repository_url>
+- cd <project_directory>
+- Install dependencies:
+
+# bash
+- Copy code
+- npm install
+- Configure environment variables in a .env file:
+
+# plaintext
+- Copy code
+- JWT_SECRET=<your_jwt_secret>
+- JWT_EXPIRATION=<expiration_time> # e.g., '1h' or '7d'
+- Start the application:
+
+# bash
+- Copy code
+- npm run start:dev
+
+# Implementation Details
+
+# 1. Authentication
+
+- JWT Authentication:
+
+- Users authenticate via a login endpoint, providing valid credentials (e.g., email and password,role).
+- Upon successful authentication, a JWT is generated and returned.
+
+- Protected Endpoints:
+
+- Middleware ensures only users with a valid token can access protected endpoints.
+
+- Sample Routes:
+- POST /auth/login: Login and receive a JWT.
+
+# 2. Authorization
+
+- Role-based authorization implemented using guards in NestJS.
+- Users are assigned roles during registration.
+- Routes are protected based on roles, ensuring users only access resources they are authorized for.
+
+- Roles:
+- Farmer: Manage their own products and view orders.
+- Customer: Browse products and place orders.
+- Sample Routes:
+- POST /products (Farmer-only)
+- POST /orders (Customer-only)
+
+# Key Files:
+- auth.module.ts
+- auth.controller.ts
+- auth.service.ts
+- jwt.strategy.ts
+
+# Authorization Guards
+- Custom guards to protect endpoints based on roles.
+
+# Key Files:
+- roles.guard.ts
+- jwt-auth.guard.ts
+
