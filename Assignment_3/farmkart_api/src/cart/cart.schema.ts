@@ -5,18 +5,18 @@ import { Product } from "src/product/product.schema";
 
 export type CartDocument = HydratedDocument<Cart>;
 
-@Schema({ timestamps: true }) 
+@Schema({ timestamps: true })
 export class Cart {
     @Prop({ type: Types.ObjectId, ref: 'Customer', required: true })
-    customer: Types.ObjectId; 
+    customer: Types.ObjectId;
 
     @Prop([
         {
-            product: { type: Types.ObjectId, ref: 'Product', required: true }, 
-            quantity: { type: Number, required: true } 
+            product: { type: Types.ObjectId, ref: 'Product', required: true },
+            quantity: { type: Number, required: true }
         },
     ])
-    products: { product: Types.ObjectId; quantity: number }[]; 
+    products: { product: Types.ObjectId; quantity: number }[];
 }
 
 export const CartSchema = SchemaFactory.createForClass(Cart);

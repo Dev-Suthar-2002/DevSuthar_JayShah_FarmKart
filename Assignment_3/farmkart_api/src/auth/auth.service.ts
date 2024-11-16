@@ -16,10 +16,12 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ) { }
 
-    private async validateUser(email: string, password: string, role: Role.FARMER): Promise<Farmer> {
+    private async validateUser(email: string, password: string, role: Role.FARMER | Role.CUSTOMER): Promise<Farmer | Customer> {
         let user;
         if (role === 'farmer') {
             user = await this.farmerService.findOneByEmail(email);
+        } else if (role === 'customer') {
+            user = await this.customerService.findOneByEmail(email);
         }
 
         if (!user) {
@@ -34,7 +36,7 @@ export class AuthService {
         return user;
     }
 
-    async login(email: string, password: string, role: Role.FARMER): Promise<{ access_token: string }> {
+    async login(email: string, password: string, role: Role.FARMER | Role.CUSTOMER): Promise<{ access_token: string }> {
         const user = await this.validateUser(email, password, role);
         const payload = { email: user.email, sub: user._id, role };
         const access_token = await this.jwtService.signAsync(payload);
@@ -42,5 +44,15 @@ export class AuthService {
         return {
             access_token,
         };
+    }
+
+    async logout(user: any) {
+        const token = user.token;
+        this.tokenBlacklist.add(token);
+        return { message: 'Logged out successfully' };
+    }
+
+    isTokenBlacklisted(token: string): boolean {
+        return this.tokenBlacklist.has(token);
     }
 }

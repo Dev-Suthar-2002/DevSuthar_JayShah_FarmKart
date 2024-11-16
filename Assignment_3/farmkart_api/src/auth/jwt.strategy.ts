@@ -19,8 +19,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     async validate(payload: any) {
+        const token = ExtractJwt.fromAuthHeaderAsBearerToken();
+        if (this.authService.isTokenBlacklisted(token)) {
+            throw new UnauthorizedException('Token has been blacklisted');
+        }
+
         if (payload.role === 'farmer') {
             return this.farmerService.findOne(payload.sub);
+        } else if (payload.role === 'customer') {
+            return this.customerService.findOne(payload.sub);
         }
         throw new Error('User  type not recognized');
     }

@@ -25,36 +25,36 @@ export enum PaymentStatus {
     FAILED = "failed"
 }
 
-@Schema({ timestamps : { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
-export class Order extends Document { 
-    @Prop({ required : true })
-    totalPrice : number;
+@Schema({ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
+export class Order extends Document {
+    @Prop({ required: true })
+    totalPrice: number;
 
-    @Prop({ type: Date, required : true })
-    estimatedDeliveryDate : Date;
+    @Prop({ type: Date, required: true })
+    estimatedDeliveryDate: Date;
 
     @Prop({ type: String, enum: OrderStatus, default: OrderStatus.PENDING })
-    status : OrderStatus;
+    status: OrderStatus;
 
-    @Prop({ type: String, enum: PaymentMethod, required : true })
-    paymentMethod : PaymentMethod;
+    @Prop({ type: String, enum: PaymentMethod, required: true })
+    paymentMethod: PaymentMethod;
 
-    @Prop({ required : true, enum: PaymentStatus, default: PaymentStatus.PENDING })
+    @Prop({ required: true, enum: PaymentStatus, default: PaymentStatus.PENDING })
     paymentStatus: PaymentStatus;
 
     @Prop()
-    transactionId : string;
+    transactionId: string;
 
     @Prop([
         {
-            product: { type: Types.ObjectId, ref: 'Product', required: true},
+            product: { type: Types.ObjectId, ref: 'Product', required: true },
             quantity: { type: Number, required: true }
         },
     ])
     products: { product: Types.ObjectId; quantity: number }[];
 
     @Prop({ type: Types.ObjectId, ref: 'Customer', required: true })
-    customer: Types.ObjectId;    
+    customer: Types.ObjectId;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

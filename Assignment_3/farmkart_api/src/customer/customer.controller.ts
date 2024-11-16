@@ -1,15 +1,18 @@
-import { Controller,Get, Post, Body, Param, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete, UseGuards, Request, NotFoundException } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { Customer } from './customer.schema';
+import { JwtAuthGuard } from 'src/auth/guard/auth.guard';
+
+
 
 @Controller('customer')
 export class CustomerController {
-    constructor( private readonly customerService : CustomerService) {}
+    constructor(private readonly customerService: CustomerService) { }
 
     @Post()
-    async create(@Body() createCustomerDto : CreateCustomerDto): Promise<Customer> {
+    async create(@Body() createCustomerDto: CreateCustomerDto): Promise<Customer> {
         return this.customerService.createCustomer(createCustomerDto);
     }
 
@@ -23,12 +26,20 @@ export class CustomerController {
         return this.customerService.findOne(id);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Patch(':id')
     async update(
-            @Param('id') id: string, 
-            @Body() updateCustomerDto : UpdateCustomerDto,
-        ) : Promise<Customer> {
-            return this.customerService.updateCustomer(id, updateCustomerDto);
+        @Param('id') id: string,
+        @Body() updateCustomerDto: UpdateCustomerDto,
+        @Request() payload
+    ): Promise<Customer> {
+        const userId = payload.user._id;
+
+        if (userId.toString() !== id) {
+            throw new NotFoundException(`You are not allowed to update this profile`);
+        }
+
+        return this.customerService.updateCustomer(userId, updateCustomerDto);
     }
 
     @Delete(':id')

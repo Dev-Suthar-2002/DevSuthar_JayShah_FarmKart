@@ -2,6 +2,7 @@ import { Controller, Post, Body, UseGuards, HttpCode, HttpStatus, Get, Req } fro
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guard/auth.guard';
 import { IsEmail, IsString, IsEnum } from 'class-validator';
+import { Request } from 'express';
 import { Role } from './role.enum';
 
 
@@ -12,8 +13,8 @@ export class LoginDto {
     @IsString()
     password: string;
 
-    @IsEnum([Role.FARMER])
-    role: Role.FARMER;
+    @IsEnum([Role.FARMER, Role.CUSTOMER])
+    role: Role.FARMER | Role.CUSTOMER;
 }
 
 @Controller('auth')
@@ -30,5 +31,13 @@ export class AuthController {
     @Get('protected')
     async getHello(@Body() loginDto: Record<string, any>) {
         return loginDto.email;
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @HttpCode(HttpStatus.OK)
+    @Post('logout')
+    async logout(@Req() payload: Request) {
+        const user = payload.user;
+        return this.authService.logout(user);
     }
 }

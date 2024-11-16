@@ -15,16 +15,13 @@ export class CreateOrderDto {
     @IsEnum(PaymentMethod)
     paymentMethod: PaymentMethod;
 
-    @IsNotEmpty()
-    @IsString()
     customer: string; //customer ID should go here
 
     @IsArray()
     @IsNotEmpty({ each: true }) 
     products: {
-        productId: string; 
+        product: string; 
         quantity: number; 
-        farmer: string; 
     }[]; 
 
     @IsEnum(OrderStatus)

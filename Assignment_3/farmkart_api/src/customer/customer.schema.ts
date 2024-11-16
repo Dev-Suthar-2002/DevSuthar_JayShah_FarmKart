@@ -24,6 +24,8 @@ export class Customer {
     @Prop({ type: [{ type: Types.ObjectId, ref: 'Order' }] })
     orders: Types.ObjectId[];
 
+    _id: Types.ObjectId;
+
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

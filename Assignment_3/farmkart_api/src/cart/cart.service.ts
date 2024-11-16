@@ -3,13 +3,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Cart, CartDocument } from './cart.schema';
 import { CreateCartDto } from './dto/create-cart.dto';
-import { UpdateCartDto} from './dto/update-cart.dto';
+import { UpdateCartDto } from './dto/update-cart.dto';
 
 @Injectable()
 export class CartService {
-    constructor(@InjectModel(Cart.name) private cartModel: Model<CartDocument>) {}
+    constructor(@InjectModel(Cart.name) private cartModel: Model<CartDocument>) { }
 
- 
+
     async createCart(createCartDto: CreateCartDto): Promise<Cart> {
         const createdCart = new this.cartModel(createCartDto);
         return createdCart.save();
@@ -20,7 +20,7 @@ export class CartService {
         return this.cartModel.find().populate('customer products.product').exec();
     }
 
- 
+
     async findOne(id: string): Promise<Cart> {
         const cart = await this.cartModel.findById(id).populate('customer products.product').exec();
         if (!cart) {

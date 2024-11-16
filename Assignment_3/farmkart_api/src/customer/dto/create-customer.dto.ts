@@ -20,5 +20,4 @@ export class CreateCustomerDto {
     @IsOptional()
     @IsString()
     address: string;
-
 }

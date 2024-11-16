@@ -1,16 +1,19 @@
-import { Controller, Get, Post, Body, Param, Patch, Delete  } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete, UseGuards, Request} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.schema';
+import { JwtAuthGuard } from 'src/auth/guard/auth.guard';
 
-@Controller('order')  
+@Controller('order')
 export class OrderController {
-    constructor(private readonly orderService: OrderService) {}
+    constructor(private readonly orderService: OrderService) { }
 
+    @UseGuards(JwtAuthGuard)
     @Post()
-    async create(@Body() createOrderDto: CreateOrderDto): Promise<Order> {
-        return this.orderService.createOrder(createOrderDto);
+    async create(@Body() createOrderDto: CreateOrderDto, @Request() payload): Promise<Order> {
+        const customer = payload.user._id;
+        return this.orderService.createOrder({...createOrderDto,customer});
     }
 
     @Get()
@@ -23,11 +26,13 @@ export class OrderController {
         return this.orderService.findOne(id);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Patch(':id')
     async update(@Param('id') id: string, @Body() updateOrderDto: Partial<CreateOrderDto>): Promise<Order> {
         return this.orderService.updateOrder(id, updateOrderDto);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Delete(':id')
     async remove(@Param('id') id: string): Promise<void> {
         return this.orderService.deleteOrder(id);

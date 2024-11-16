@@ -5,8 +5,10 @@ import { AuthController } from './auth.controller';
 import { FarmerService } from '../farmer/farmer.service';
 import { JwtStrategy } from './jwt.strategy';
 import { FarmerModule } from 'src/farmer/farmer.module';
+import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CustomerModule } from 'src/customer/customer.module';
+// import { LocalStrategy } from './local.strategy';
 
 @Module({
     imports: [FarmerModule, CustomerModule,
