@@ -4,6 +4,8 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './product.schema';
 import { JwtAuthGuard } from 'src/auth/guard/auth.guard';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
 
 @Controller('product')
 export class ProductController {
@@ -28,6 +30,7 @@ export class ProductController {
         return this.productService.findOne(id);
     }
 
+    @Roles(Role.FARMER)
     @UseGuards(JwtAuthGuard)
     @Patch(':id')
     async update(
@@ -45,6 +48,7 @@ export class ProductController {
         return this.productService.updateProduct(id, updateProductDto);
     }
 
+    @Roles(Role.FARMER)
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
     async remove(@Param('id') id: string, @Request() payload): Promise<void> {
